@@ -15,7 +15,13 @@ So I change the format of the sub problem into something like: maxSubArray(int A
 maxSubArray(A, i) = A[i] +  （maxSubArray(A, i - 1) > 0 ? maxSubArray(A, i - 1) : 0）;
 同时维护一个变量max
 */
-
+/*
+首先思考是否有optimal substructure:
+dp[i] denotes max subarray sum ending with A[i]
+if we know dp[i-1]
+dp[i] = dp[i-1] + A[i] if(dp[i-1] + A[i] > A[i])
+dp[i] = A[i] else
+*/
 /////////////////
 public int maxSubArray(int[] A) {
         int n = A.length;
