@@ -17,7 +17,7 @@ Given target = 5, return true.
 
 Given target = 20, return false.
 /*
-这一题与I不同， 不能用2D转换1D的方法 才去与Diagonal Binary Search(498)类似的方法，从右上或者左下开始
+这一题与I不同， 不能用2D转换1D的方法 采取与Diagonal Binary Search(498)类似的方法，从右上或者左下开始
 */
 public class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
@@ -28,7 +28,7 @@ public class Solution {
 
         int x = rows - 1;
         int y = 0;
-
+        // 从左下开始查找。 时间复杂度最差O(m+n)
         while(x >= 0 && y < cols){
             int cur = matrix[x][y];
             if(cur == target){
