@@ -4,7 +4,7 @@ class UnionFindSet{
   private int[] parents;
   private int[] ranks;
   private int count;
-  public UnionFindSet(int n){ // constructor, 必须已知一共有多少个点
+  public UnionFindSet(int n){ // constructor
     //at beginning every node is a cluster. its parent is itself
     count =n; //初始n个cluster
     parents =  new int[n+1];
