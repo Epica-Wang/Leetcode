@@ -56,8 +56,11 @@ class Solution {
         result.add(new ArrayList<>(tempList));
       }
       for(int i=0;i<candidates.length;i++){
-        if(target<0) break;
-        if(tempList.size()>0 && (candidates[i]<tempList.get(tempList.size()-1))) continue;  //这步写tempList!=null会报错？ tempList!=null和tempList.size()=0 区别？
+        if(target<0) break;  //减枝 target已小于0就不继续尝试后面的数了
+        if(tempList.size()>0 && (candidates[i]<tempList.get(tempList.size()-1)))
+          continue;
+        // 能写成candidates[i]<tempList.get(tempList.size()-1) 基于已经sort了array
+        //这步写tempList!=null会报错？ tempList!=null和tempList.size()=0 区别？
         tempList.add(candidates[i]);
         helper(result, tempList, candidates, target-candidates[i]);
         tempList.remove(tempList.size()-1);
