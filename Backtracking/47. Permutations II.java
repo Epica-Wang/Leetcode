@@ -25,7 +25,10 @@ class Solution {
       }else{
         for(int i=0;i<nums.length;i++){
           if(used[i]==true) continue; // visit the element currently in this permutation tempList
-          if(i>0&&nums[i]==nums[i-1]&&used[i-1]==false) continue;  // skip the Repeat element in nums
+          if(i>0&&nums[i]==nums[i-1]&&used[i-1]==false)
+            continue;  // skip the Repeat element in nums
+            // 每个helper里的for代表backtracking树的这一层 i代表选到了这一层的哪个数字
+            // 连续相同的element，保证只有第一个被试过放在这一层 
           tempList.add(nums[i]);
           used[i]=true;
           helper(result, tempList, nums, used);
