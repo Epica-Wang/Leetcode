@@ -22,7 +22,16 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
  * }
  */
 /*
-一种错误写法：会不停的重复访问已访问过的left
+一种错误写法：会不停的重复访问已访问过的left:
+例子:
+     1
+    /
+  2
+ /
+6
+会output: 6 2 6 1.
+原因在于line46 pop了root之后，line48只在root.right！=null的时候修改了下一轮进入while的root，
+而如果root.right = null的话下一轮进入while的还是line46 pop的root
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
       Stack<TreeNode> stack = new Stack<>();
@@ -98,7 +107,16 @@ class Solution {
 
 /*recursive*/
 class Solution {
+    private List<Integer> res = new LinkedList<>();
     public List<Integer> inorderTraversal(TreeNode root) {
+      helper(root, res);
+      return res;
+    }
 
+    public void helper(TreeNode root, List<Integer> res) {
+      if(root == null) return;
+      helper(root.left, res);
+      res.add(root.val);
+      helper(root.right, res);
     }
 }

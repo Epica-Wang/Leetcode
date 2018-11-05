@@ -11,6 +11,12 @@
 // kth largest means there is n-(k-1) elements smaller than it.
 
 //O(N lg K) running time + O(K) memory
+/* min heap. maintain heap size = k. top of heap is the kth findKthLargest
+when size of heap >k, poll top.
+why? top of heap is the kth findKthLargest => there are k-1 elements larger than it.
+when the size of heap is k+1, it means there are k elements larger than current top.
+so the current top can not be the kth largest.
+*/
 class Solution{
   public int findKthLargest(int[] nums, int k){
     Queue<Integer> pq = new PriorityQueue<>();
@@ -24,8 +30,10 @@ class Solution{
   }
 }
 
-// Solution2: use max heap. store top n-(k-1) smallest. then kth largest is at the top of max heap.
-// kth largest means there are k-1 elements larger than it.
+// Solution2: use max heap. store top n-(k-1)=n-k+1 smallest. then kth largest is at the top of max heap.
+/* kth largest means there are n-k elements smaller than it.
+when the heap size = n-k+2, there are n-k+1 element smaller than the ele at heap top.
+*/
 class Solution {
     public int findKthLargest(int[] nums, int k) {
       Queue<Integer> pq = new PriorityQueue<>(nums.length, (a,b)->b-a);
