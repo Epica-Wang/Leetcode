@@ -36,7 +36,10 @@ class Solution {
     //and then backtracking remove all unitl nums[0].
     // then to find all sets begin with with nums[1]
     public void helper(List<List<Integer>> result, List<Integer> tempList, int[] nums, int index){
-      result.add(new ArrayList<Integer>(tempList));
+      if(start==nums.length) return;
+
+      result.add(new ArrayList<Integer>(tempList));  // add first then go to for
+
       for(int i = index;i<nums.length;i++){
         tempList.add(nums[i]);
         helper(result, tempList, nums,i+1);
