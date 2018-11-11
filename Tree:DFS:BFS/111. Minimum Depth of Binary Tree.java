@@ -50,6 +50,7 @@ class Solution {
 }
 
 /* Iterative: use two queues. bfs
+*/
 class Solution {
     public int minDepth(TreeNode root) {
         if(root == null)
@@ -81,4 +82,3 @@ class Solution {
         return -1;
       }
 }
-*/

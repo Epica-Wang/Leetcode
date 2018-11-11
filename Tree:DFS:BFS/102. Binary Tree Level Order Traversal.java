@@ -8,7 +8,7 @@
  * }
  */
 /* my solution 2: upgrade solution1. use peek() instead of poll(), so that can get
-node without remove it. So no need to use newLevelNode arraylist, also save time for
+node without remove it. Keep record of a levelNum, so no need to use newLevelNode arraylist, also save time for
 traversing newLevelNode */
 class Solution{
   public List<List<Integer>> levelOrder(TreeNode root) {

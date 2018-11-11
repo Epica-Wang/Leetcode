@@ -8,16 +8,8 @@
  * }
  */
 
-/*  The second method is based on DFS.
-Instead of calling depth() explicitly for each child node,
-we return the height of the current node in DFS recursion.
-When the sub tree of the current node (inclusive) is balanced,
-the function dfsHeight() returns a non-negative value as the height.
-Otherwise -1 is returned.
-According to the leftHeight and rightHeight of the two children,
-the parent node could check if the sub tree
-is balanced, and decides its return value.
-Time: O(N)
+/*
+Time: O(N^2). for each root of subtree, need to go through all its children node to compute maxDepth
 */
 class Solution {
     public boolean isBalanced(TreeNode root) {
@@ -39,7 +31,8 @@ class Solution {
     }
 }
 
-/*Solution 2*/
+/*Solution 2
+ Time O(N)*/
 public class Solution {
   private boolean result = true;
 

@@ -32,7 +32,7 @@ class Solution {
           right--;
         }
       }
-      //return语句可涵盖：1.跳出while后left和right指向同一个元素 2.nums的length=2 根本没进while循环
+      //return语句可涵盖：1.跳出while后left和right指向同一个元素 2.只剩left和right 3.nums的length=2 根本没进while循环
       return Math.min(nums[left],nums[right]);
     }
 }
