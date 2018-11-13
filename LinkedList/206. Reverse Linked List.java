@@ -32,3 +32,23 @@ class Solution {
       return prev;
     }
 }
+
+// 11.12重写练习 dummy head
+class Solution {
+    public ListNode reverseList(ListNode head) {
+      if(head==null) return null;
+      ListNode dummy = new ListNode(0);
+      ListNode prev =  dummy;
+      ListNode cur = head;
+      while(cur!=null){
+        ListNode nextTemp = cur.next;
+        cur.next = prev;
+        prev = cur;
+        cur = nextTemp;
+      }
+      head.next = null;
+      //dummy = null; 这么写了只是让dummy指向了null, 但head.next 还是指向之前那个new ListNode(0)
+
+      return prev;
+    }
+}

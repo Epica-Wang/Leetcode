@@ -35,11 +35,11 @@ public class Solution {
       node = head;
       while(node!=null){
         if(node.random!=null){
-          node.next.random = node.random.next;
+          node.next.random = node.random.next; //node.random.next 才是新的node
         }
         node = node.next.next;
       }
-      //3rd iteration: recover old list，seperate new list
+      //3rd iteration: recover old list，seperate new list的同时把new list里面node的next指针设置正确
       node = head;
       RandomListNode newHead = node.next;
       RandomListNode newNode = newHead;

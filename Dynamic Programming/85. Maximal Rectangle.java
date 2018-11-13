@@ -22,7 +22,7 @@ dp[i][j][1]: 以(i,j)为右下端点，从（0，0）到（i，j）所能组成�
 2. 初始化。仍然第一行 第一列  但第一行每个位置与前一个位置有关，第一列每个位置与上一个位置有关
 所以在初始化的时候，还需要先初始化dp[0][0][0]和dp[0][0][1]
 */
-/*
+/* wrong solution！！！！
 class Solution {
     public int maximalRectangle(char[][] matrix) {
       int row = matrix.length;

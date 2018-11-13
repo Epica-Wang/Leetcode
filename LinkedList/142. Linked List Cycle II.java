@@ -8,6 +8,11 @@ Can you solve it without using extra space?
 /** https://zhengyang2015.gitbooks.io/lintcode/linked_list_cycle_ii_103.html
 1.use two pointer in 141 to determine if exists a cycle.
 
+dummy head->A->B->C->D->E
+                  \     |
+                      F
+cycle 开始的地方为C
+
 2. 把slow放回dummy head。slow,fast同时出发都一步一步走，再次相遇的点就是cycle的start。
 Proof:
 ->设一共x个node不在环中，即第x+1个node为cycle start。设环共有m个node。

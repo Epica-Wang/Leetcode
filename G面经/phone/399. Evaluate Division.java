@@ -43,25 +43,39 @@ class Solution {
         String num = equations[i][0];
         String denom = equations[i][1];
         double value = values[i];
+
         HashMap<String, Double> temp1 = equationsMap.getOrDefault(num, new HashMap<String, Double>());
         HashMap<String, Double> temp2 = equationsMap.getOrDefault(denom, new HashMap<String, Double>());
         temp1.put(denom, value);
+        //temp1.put(num, 1.0);
         temp2.put(num, 1/value);
+        //temp2.put(denom, 1.0);
         equationsMap.put(num, temp1);
         equationsMap.put(denom, temp2);
-        // equationsMap.put(num, equationsMap.getOrDefault(num, new HashMap<String, Double>()).put(denom, value));
-        //equationsMap.put(denom, equationsMap.getOrDefault(denom, new HashMap<String, Double>()).put(num, 1 / value));
+
+        // equationsMap.put(num, equationsMap.getOrDefault(num, new HashMap<String, Double>()).put(denom + "", value ));
+        // equationsMap.put(denom, equationsMap.getOrDefault(denom, new HashMap<String, Double>()).put(num + "", 1 / value ));
+        /*
+        上面两行长串看似fancy，但其实报错。。。原因在于map.put(key, value)其实是有返回值的， 返回value。
+        所以后半部分
+        equationsMap.getOrDefault(num, new HashMap<String, Double>()).put(denom + "", value ) 返回的是value
+        然后就变成equationsMap.put(num, value（是String Type）)  然而本来想put的是HashMap<String, Double> type！
+        */
       }
       return equationsMap;
     }
 
     // return acc product from a path: num to denom. if no path, return null
+    // 在这整个过程中，终点denom是一直不变的，但起点num一直在变
     public Double dfs (HashMap<String, HashMap<String, Double>> equationsMap, String num, String denom, HashSet<String> set) {
       if (!equationsMap.containsKey(num) || !equationsMap.containsKey(denom)) {
         return null;
       }
-      if (set.contains(num)) return null;
-      if (num == denom) return 1.0;
+
+      if (num.equals(denom)) return 1.0;
+      if (set.contains(num)) {
+        return null;
+      }
 
       set.add(num);
       HashMap<String, Double> denomsValues = equationsMap.get(num);
