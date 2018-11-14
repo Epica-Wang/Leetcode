@@ -4,40 +4,37 @@ How full you can fill this backpack?
 
 题解： https://zhengyang2015.gitbooks.io/lintcode/backpack_i_92.html
 */
+
+/*
+dp[i][sum] = 前 i 个元素里我们能不能凑出来 sum.
+dp[i][sum] 要么取决于 dp[i - 1][sum] (不取当前元素)
+要么取决于 dp[i - 1][sum - nums[i]] (取当前元素)
+其中每一行 i 都只考虑前一行 i - 1 的值。
+*/
 public class Solution {
-    /**
+    /**  https://mnmunknown.gitbooks.io/algorithm-notes/content/82ff0c_bei_bao_wen_ti.html
      * @param m: An integer m denotes the size of a backpack
      * @param A: Given n items with size A[i]
      * @return: The maximum size
      */
     public int backPack(int m, int[] A) {
         // write your code here
-        if(m == 0 || A == null || A.length == 0){
-            return 0;
-        }
+        // dp[i][j] for the first i elements, can we make sum of j
+        boolean[][] dp = new boolean[A.length + 1][m + 1];
 
-        int n = A.length;
-        int[][] fillPack = new int[m + 1][n + 1];
+        for(int i = 0; i <= A.length; i++) dp[i][0] = true;
 
-        for(int i = 0; i <= m; i++){
-            fillPack[i][0] = 0;
-        }
-
-        for(int j = 0; j <= n; j++){
-            fillPack[0][j] = 0;
-        }
-
-        for(int i = 1; i <= m; i++){
-            for(int j = 1; j <= n; j++){
-                if(i - A[j - 1] >= 0){
-                    //一种情况为不要第j件物品，则最优情况为背包容量为i时前j－1件物品的最优值；第二种情况为要第j件物品，则最优情况为背包容量为i-第j件物品体积时前j－1件物品的最优值加上第j件物品的值。
-                    fillPack[i][j] = Math.max(fillPack[i][j - 1], fillPack[i - A[j - 1]][j - 1] + A[j - 1]);
-                }else{
-                    fillPack[i][j] = fillPack[i][j - 1];
-                }
+        for(int i = 1; i <= A.length; i++){
+            for(int j = 1; j <= m; j++){
+                if(j - A[i - 1] >= 0)
+                    dp[i][j] = (dp[i - 1][j] || dp[i - 1][j - A[i - 1]]);
+                else dp[i][j] = dp[i - 1][j];
             }
         }
 
-        return fillPack[m][n];
+        for(int i = m; i >= 0; i--)
+            if(dp[A.length][i]) return i;
+
+        return -1;
     }
 }
