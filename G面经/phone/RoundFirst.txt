@@ -1,0 +1,35 @@
+第一轮：
+给一串synonym pairs 比如
+[ (wrong, mistake), (fatality, casualty), (fatality, accident)...]
+
+再给一串queries，对每个query，return whether they are synonym pair by comparing word by word.
+比如queries：[(“car fatality bump”, “car accident bump into”),
+  (“car casualty”, “car accident”),
+  (“dog cat”, “dog cat”)]
+
+(“car fatality bump”, “car accident bump into”) -> 长度就不一样 直接return false
+(“car casualty”, “car accident”) -> return true;  car == car，然后casualty 和accident是synonym
+(“dog cat”, “dog cat”) -> return true;
+
+//我的做法union find
+1.建个HashMap<String, String> parentMap，key是string，value是它的parent
+2. 扫synonym pairs两遍：
+     第一遍把所有word的parent设成自己，
+     第二遍对pair做union
+3.建完parentMap之后就可以处理queries了
+     for str1 and str2 in each query:
+          if (str1.length() != str2.length()) return false;
+          String[] str1Words = str1.split(" ");
+          String[] str2Words = str2.split(" ");
+          for (int i = 0; i <  str1Words.length; i++) {
+            if (!parentMap.containsKey(str1Words[i]) || !parentMap.containsKey(str2Words[i]))  {
+              if (!str1Words[i].equals(str2Words[i])) {
+                return false;
+              }
+            }else {  // current two words are in map, see if they have same parent
+              if (!parentMap.get(str1Words[i]).equals(parentMap.get(str2Words[i]))) {
+                return false;
+              }
+            }
+          }
+          return true;

@@ -42,7 +42,7 @@ class MyQueue {
         while(!stack1.isEmpty()){
           stack2.push(stack1.pop());
         }
-    }
+      }
       return stack2.pop();
     }
 

@@ -59,7 +59,7 @@ class Solution {
         上面两行长串看似fancy，但其实报错。。。原因在于map.put(key, value)其实是有返回值的， 返回value。
         所以后半部分
         equationsMap.getOrDefault(num, new HashMap<String, Double>()).put(denom + "", value ) 返回的是value
-        然后就变成equationsMap.put(num, value（是String Type）)  然而本来想put的是HashMap<String, Double> type！
+        然后就变成equationsMap.put(num, value（是Double Type）)  然而本来想put的是HashMap<String, Double> type！
         */
       }
       return equationsMap;

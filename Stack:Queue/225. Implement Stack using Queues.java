@@ -64,6 +64,44 @@ class MyStack {
       return queue1.isEmpty() && queue2.isEmpty();
     }
 }
+//similar as above, only use one queue
+class MyStack
+{
+    Queue<Integer> queue;
+
+    public MyStack()
+    {
+        this.queue=new LinkedList<Integer>();
+    }
+
+    // Push element x onto stack.
+    public void push(int x)
+    {
+       queue.add(x);
+       for(int i=0;i<queue.size()-1;i++)
+       {
+           queue.add(queue.poll());
+       }
+    }
+
+    // Removes the element on top of the stack.
+    public void pop()
+    {
+        queue.poll();
+    }
+
+    // Get the top element.
+    public int top()
+    {
+        return queue.peek();
+    }
+
+    // Return whether the stack is empty.
+    public boolean empty()
+    {
+        return queue.isEmpty();
+    }
+}
 
 /* Solution 2:
 Use two queues. Maintain a queue that always has one element that should be top/poll.
