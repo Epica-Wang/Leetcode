@@ -12,6 +12,25 @@ dp[i]=true的条件: j从index i往前遍历，直到substring[j,i] && dp[j-1].
 return dp[s.length]
 i从0到s.length-1
 */
+// 01.23.2019重写练习
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+      boolean[] dp = new boolean[s.length() + 1];
+      dp[0] = true;
+      for(int i = 1;i <= s.length();i++){
+        for(int j = i;j >= 1;j--){
+          //chars from j to i (index from 1)
+          if (wordDict.contains(s.subString(j-1, i)) && dp[j-1]) {
+            dp[i] = true;
+            break;
+          }
+        }
+      }
+      return dp[s.length()];
+    }
+}
+
+
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
       boolean[] dp = new boolean[s.length()];
