@@ -32,7 +32,7 @@ public class Main {
     for (String quote : quotes) {
       Set<String> used = new HashSet<>();
 
-      String[] words = quote.toLowerCase().split("\\W+");
+      String[] words = quote.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\W+");
       for (String word : words) {
         if (!freq.containsKey(word)) {
           continue;
