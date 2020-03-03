@@ -13,6 +13,58 @@ Some examples:
 "2*(5+5*2)/3+(6/2+8)" = 21
 "(2+6* 3+5- (3*14/7+2)*5)+3"=-12
 
+/*
+另一种思想：本题变成recursive版的227
+碰到括号 用227的思路处理括号里的东西
+*/
+public int calculate(String s) {
+        if (s == null) {
+            return 0;
+        }
+        Queue<Character> q = new LinkedList<>();
+        for (char c : s.toCharArray()) {
+            q.offer(c);
+        }
+        q.offer('+');
+        return cal(q);
+    }
+
+    private int cal(Queue<Character> q) {
+        char sign = '+';
+        int num = 0;
+        Stack<Integer> stack = new Stack<>();
+        while (!q.isEmpty()) {
+            char c = q.poll();
+            if (c == ' ') {
+                continue;
+            }
+            if (Character.isDigit(c)) {
+                num = 10 * num + c - '0';
+            } else if (c == '(') {
+                num = cal(q);
+            } else {
+                if (sign == '+') {
+                    stack.push(num);
+                } else if (sign == '-') {
+                    stack.push(-num);
+                } else if (sign == '*') {
+                    stack.push(stack.pop() * num);
+                } else if (sign == '/') {
+                    stack.push(stack.pop() / num);
+                }
+                num = 0;
+                sign = c;
+                if (c == ')') {
+                    break;
+                }
+            }
+        }
+        int sum = 0;
+        while (!stack.isEmpty()) {
+            sum += stack.pop();
+        }
+        return sum;
+    }
 /*  四道calculator的套路总结
 https://leetcode.com/problems/basic-calculator-iii/discuss/113592/Development-of-a-generic-solution-for-the-series-of-the-calculator-problems
 */

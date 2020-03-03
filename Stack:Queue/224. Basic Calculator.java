@@ -59,6 +59,7 @@ public int calculate(String s) {
             //reset the sign and result for the value in the parenthesis
             sign = 1;
             result = 0;
+            number = 0;
         }else if(c == ')'){
             result += sign * number;
             number = 0;

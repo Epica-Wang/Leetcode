@@ -32,6 +32,9 @@ public class Solution {
               num = num*10+s.charAt(i)-'0';
           }
           if((!Character.isDigit(s.charAt(i)) &&' '!=s.charAt(i)) || i==len-1){
+            /*注意condition i==len-1 在最后时要把最后积攒的num也push进栈
+            因为之前都是在遇到下一个运算符的时候， 才把上一个num进栈
+            */
               if(sign=='-'){
                   stack.push(-num);
               }
