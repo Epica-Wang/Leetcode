@@ -13,6 +13,14 @@ dp(i, j) is true when s(i) equals to s(j)
 and s(i+1 ... j-1) is a palindromic substring.
 When we found a palindrome, check if it's the longest one. Time complexity O(n^2).
 难点在于要求j > i 且dp(i, j) depends on dp(i+1, j-1) 如何填dp，不同于普通按行or按列填写
+
+This yields a straight forward DP solution,
+which we first initialize the one and two letters palindromes,
+and work our way up finding all three letters palindromes, and so on...
+Complexity Analysis
+Time complexity : O(n^2)
+
+Space complexity : O(n^2)
 */
 public String longestPalindrome(String s) {
   int n = s.length();

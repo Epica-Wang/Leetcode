@@ -28,5 +28,29 @@ class Solution{
     }
     return newDigits;
     }
+}
+
+// 03/12/2020 练习
+class Solution{
+	public int[] plusOne(int[] digits){
+		int length = digits.length;
+        int tail=length-1;
+		for(tail=length-1;tail>=0;tail--){
+			if(digits[tail]!=9){
+        digits[tail]+=1;
+        break;
+			}else{
+				digits[tail]=0;
+            }//else
+        }//for
+
+        if (digits[0] != 0) return digits;
+        int[] newDigits = new int[length+1];
+        newDigits[0]=1;
+        for(int i=0;i<length;i++){
+            newDigits[i+1]=digits[i];
+        }
+        return newDigits;
+    }
 
 }

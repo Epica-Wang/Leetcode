@@ -14,7 +14,7 @@ class Solution {
           else
             right = mid;
         }
-        // left=mid=index of max
+        // left=mid=index of min
         // now binary seach to find target
         int index_min = left;
         //in which subarray should we search target

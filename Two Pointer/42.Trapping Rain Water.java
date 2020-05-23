@@ -1,4 +1,38 @@
+//03.28.2020 重写练习
+class Solution {
+    public int trap(int[] height) {
+      if (height == null || height.length <= 2) return 0;
 
+      int left = 0;
+      int leftHeight = height[left];
+      int right = height.length - 1;
+      int rightHeight = height[right];
+
+      int maxArea = 0;
+      while(left < right) {
+        if (leftHeight < rightHeight) {
+          // left往右move 直到找到第一个leftHeight >= rightHeight
+          // 其间扫过的区域加入area
+          left++;
+          if (height[left] <= leftHeight) {
+            maxArea += leftHeight - height[left];
+          } else {
+            leftHeight = height[left];
+          }
+        } else if (leftHeight >= rightHeight) {
+          // right 往左move 直到找到第一个rightHeight >= leftHeight
+          // 其间扫过的区域加入area
+          right--;
+          if (height[right] <= rightHeight) {
+            maxArea += rightHeight - height[right];
+          } else {
+            rightHeight = height[right];
+          }
+        }
+      }
+      return maxArea;
+    }
+}
 
 /*The idea is very simple.
 Begin scan from beginning and end of array.
@@ -55,10 +89,3 @@ public int trap(int[] height) {
 	return area;
 }
 */
-
-//07.31.2018 重写练习
-class Solution {
-    public int trap(int[] height) {
-
-    }
-}

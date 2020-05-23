@@ -9,7 +9,27 @@ s = "loveleetcode",
 return 2.
 Note: You may assume the string contain only lowercase letters.
 
-//Solution 1: LinkedHashMap  + Set . 1 pass O(N), space is O(N)
+// Solution 0: 普通hashmap，构建好后按index遍历原string，保证了找到的是first char
+class Solution {
+    public int firstUniqChar(String s) {
+        HashMap<Character, Integer> count = new HashMap<Character, Integer>();
+        int n = s.length();
+        // build hash map : character and how often it appears
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            count.put(c, count.getOrDefault(c, 0) + 1);
+        }
+
+        // find the index
+        for (int i = 0; i < n; i++) {
+            if (count.get(s.charAt(i)) == 1)
+                return i;
+        }
+        return -1;
+    }
+}
+
+//Solution 1: LinkedHashMap（保证插入顺序）  + Set . 1 pass O(N), space is O(N)
 public int firstUniqChar(String s) {
         Map<Character, Integer> map = new LinkedHashMap<>();
         Set<Character> set = new HashSet<>();

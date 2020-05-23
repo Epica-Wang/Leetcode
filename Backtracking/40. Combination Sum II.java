@@ -14,6 +14,7 @@ A solution set is:
   [2, 6],
   [1, 1, 6]
 ]
+全positive，有duplicates，每个元素只能用一次
 */
 
 class Solution {

@@ -26,7 +26,7 @@ Only 5 possible input we need to pay attention:
 3. '-': same as above
 4. '(': push the previous result and the sign into the stack,
   set result to 0, just calculate the new result within the parenthesis.
-5. ')': pop out the top two numbers from stack,
+5. ')': pop out the top two eles from stack,
   first one is the sign before this pair of parenthesis,
   second is the temporary result before this pair of parenthesis.
   We add them together.

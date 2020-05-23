@@ -34,6 +34,12 @@ wordDict = ["cats", "dog", "sand", "and", "cat"]
 Output:
 []
 
+/*
+Recursion with memorization
+思路跟131 比较像。
+但这个是break by word所以不用go through each char，用startWith（word）方便一些
+加了Map memorization，dfs需要return的就是结果了
+*/
 class Solution {
     public List<String> wordBreak(String s, List<String> wordDict) {
       HashMap<String, List<String>> map = new HashMap<>();
@@ -45,7 +51,7 @@ class Solution {
       if(map.containsKey(s)){
         return map.get(s);
       }
-
+      //每层dfs都自己新建了一个res list，所以不用像其他题一样回到上一层时remove last one
       List<String> res = new LinkedList<>();
       if(s.length()==0){
         res.add("");

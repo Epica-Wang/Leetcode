@@ -70,7 +70,7 @@ public class Solution {
 继续扫描，看到新的 end 的时候，存下这个 end 的时间戳，因为它是重合区间里 end 时间最早的一个；
 二者之间，就是具体的 max overlap 区间。
 
-//solution2
+//solution2 思路同上扫描线 只是将start和end time单独存成array，从而避免了建Point class
  public class Solution {
      public int minMeetingRooms(Interval[] intervals) {
          int[] starts = new int[intervals.length];

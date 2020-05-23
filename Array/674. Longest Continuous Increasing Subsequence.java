@@ -12,6 +12,8 @@ Explanation: The longest continuous increasing subsequence is [2], its length is
 Note: Length of the array will not exceed 10,000.
 
 /*
+subsequence本身不要求连续，subarray要求连续。
+但continuous subsequence就相当于subarray
 optimal solution for optimal substructure:
 dp[i] denote length of longest continuous increasing subsequence ended with i
 if we know dp[i]:

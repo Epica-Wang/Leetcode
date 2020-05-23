@@ -39,3 +39,29 @@ class Solution {
     }
 /* maxheap写法：前面pq的comparator改一下，heap里加n个，poll k次*/
 }
+
+/**
+max heap 写法2：
+*/
+class Solution {
+    public List<Integer> topKFrequent(int[] nums, int k) {
+      HashMap<Integer, Integer> map = new HashMap<>();
+      for(int i=0;i<nums.length;i++){
+        map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+      }
+      List<Integer> res =  new LinkedList<>();
+      PriorityQueue<Map.Entry<Integer,Integer>> maxHeap = new PriorityQueue<>(nums.length, new Comparator<Map.Entry<Integer,Integer>>(){
+        @Override
+        public int compare(Map.Entry<Integer,Integer> e1, Map.Entry<Integer,Integer> e2){
+          return e2.getValue()-e1.getValue();
+        }
+      });
+      for(Map.Entry<Integer, Integer> entry:map.entrySet()){
+        maxHeap.add(entry);
+        if (maxHeap.size() > map.entrySet().size() - k) {
+            res.add(maxHeap.poll().getKey());
+        }
+      }
+      return res;
+    }
+}

@@ -7,6 +7,8 @@ public class Solution {
  			else if(index==nums.length-1) return nums.length;
  			else if(target>nums[index+1]) continue;
  			else return (index+1);
- 		}       
+ 		}
     }
 }
+
+//solution2: binary search N*log(N). See binary search folder

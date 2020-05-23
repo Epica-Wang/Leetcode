@@ -15,7 +15,7 @@ Example 2:
 Input: [4,5,6,7,0,1,2]
 Output: 0
 
-/* 乞丐版的35题*/
+/* 乞丐版的33题*/
 class Solution {
     public int findMin(int[] nums) {
       if(nums.length==1) return nums[0];

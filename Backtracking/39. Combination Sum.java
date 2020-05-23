@@ -12,6 +12,7 @@ A solution set is:
   [7],
   [2, 2, 3]
 ]
+全positive，没有duplicate，每个元素可用无限次
 */
 
 class Solution {
@@ -30,7 +31,10 @@ class Solution {
       if(target<0){
         return;
       }
-
+      /**
+      需要一个start index因为避免出现[3, 2, 2]这种解
+      [2, 2, 3]的情况已经在访问2的时候考虑过了
+      */
       for(int i=start;i<candidates.length;i++){
         cur.add(candidates[i]);
         helper(i, target-candidates[i], candidates, res, cur);

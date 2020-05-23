@@ -26,7 +26,7 @@ Spiral order has direction cycle : right -> down -> left -> up
 We just need to know which direction we're on and find what to change in each direction transition.
 
 What to change in each direction transition?:
-1. difinitely index i, j
+1. definitely index i, j
 2. the limit reach of row and col for next direction
 
 Use left, right, up, down to denote maximum 4 edges it can reach.

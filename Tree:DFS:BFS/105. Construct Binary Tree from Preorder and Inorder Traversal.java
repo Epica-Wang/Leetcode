@@ -64,7 +64,12 @@ In-order 和 pre-order 单独都只能提供一部分树的信息，只依靠一
      public TreeNode buildTree(int[] preorder, int[] inorder) {
        return helper(preorder,0,inorder,0,inorder.length-1);
      }
-
+     /**
+     helper return的是：
+     以preOrder[preIndex] 为 root，
+     其子树的inOrder traversal为inOrder[inStart ~ inEnd]
+     建好树后的root
+     */
      public TreeNode helper(int[] preorder, int preIndex, int[] inorder, int inStart, int inEnd){
        if(preIndex>=preorder.length || inStart>inEnd){
          return null;

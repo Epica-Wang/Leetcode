@@ -6,6 +6,29 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+
+//recursive 写法
+/**
+1->2->3->4->5->NULL
+  1->2->3->4 <- 5
+    1->2->3 <- 4 <- 5
+      1->2 <- 3 <- 4 <- 5
+        1 <- 2 <- 3 <- 4 <- 5
+*/
+class Solution {
+  public ListNode reverseList(ListNode head) {
+      if (head == null || head.next == null) return head;
+      // recursive call的时候每层return的newHead都是original list中的最后一个node，一直不变
+      ListNode newHead = reverseList(head.next);
+      // head.next 为已经reverse好的list的最后一个node
+      // 此时change current node(head)和已经reverse好的list的最后一个node的关系
+      head.next.next = head;
+      // head.next别忘了设成null, 如果是还有元素 之后recursive的stack里会改next的
+      head.next = null;
+      return newHead;
+  }
+}
+
 /*
  1->2->3->4->null
 for each node, we need to store its original previous and original next node
